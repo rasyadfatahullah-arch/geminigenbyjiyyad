@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin · Gemini Plus</title>
+<meta name="theme-color" content="#07070d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f8cff'/%3E%3Cstop offset='.55' stop-color='%239b72ff'/%3E%3Cstop offset='1' stop-color='%23ff6b9d'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23g)' d='M24 2c1.6 11.5 10.5 20.4 22 22-11.5 1.6-20.4 10.5-22 22C22.4 34.5 13.5 25.6 2 24 13.5 22.4 22.4 13.5 24 2z'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07070d;--card:rgba(255,255,255,.045);--line:rgba(255,255,255,.1);--txt:#ededf7;--mut:#9a9ab6;--ok:#5ee6a8;--err:#ff7a8a;--warn:#ffc86b;
+  --grad:linear-gradient(120deg,#4f8cff 0%,#9b72ff 52%,#ff6b9d 100%)}
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;background:var(--bg);color:var(--txt);font:14px/1.5 'Sora',system-ui,sans-serif;padding:20px 14px 50px}
+body::before{content:"";position:fixed;z-index:-1;width:520px;height:520px;left:-160px;top:-160px;border-radius:50%;background:#3b5bff;filter:blur(110px);opacity:.35}
+.wrap{max-width:980px;margin:0 auto}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand svg{width:34px;height:34px}
+h1{font-size:19px;font-weight:700}
+h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+h3{font-size:14px;font-weight:600;margin-bottom:12px}
+.card{border:1px solid var(--line);background:var(--card);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:18px;padding:16px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.stat{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:13px 14px}
+.stat .n{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat .t{font-size:11.5px;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:12px;color:var(--mut);margin:10px 0 5px}
+input[type=text],input[type=password],input[type=number]{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--txt);font:inherit;outline:none}
+input:focus{border-color:#9b72ff;box-shadow:0 0 0 3px rgba(155,114,255,.18)}
+.btn{border:0;border-radius:12px;padding:10px 16px;background:var(--grad);color:#fff;font:600 13.5px 'Sora',sans-serif;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}.btn[disabled]{opacity:.5}
+.btn.line{background:none;border:1px solid var(--line);color:var(--txt)}
+.btn.red{background:none;border:1px solid rgba(255,122,138,.5);color:var(--err)}
+.mini{border:1px solid var(--line);background:none;color:var(--txt);border-radius:8px;padding:4px 9px;font:inherit;font-size:11.5px;cursor:pointer;margin-left:4px}
+.mini:hover{background:rgba(255,255,255,.08)}
+.mini.red{color:var(--err);border-color:rgba(255,122,138,.4)}
+.sw{display:flex;align-items:center;gap:10px;margin-top:12px}
+.sw input{width:18px;height:18px;accent-color:#9b72ff}
+.msg{font-size:13px;margin-top:10px;min-height:18px}.msg.err{color:var(--err)}.msg.ok{color:var(--ok)}
+.warn{border:1px solid rgba(255,200,107,.45);background:rgba(255,200,107,.08);color:var(--warn);border-radius:12px;padding:10px 12px;font-size:12.5px;margin-bottom:12px}
+.tw{overflow-x:auto;border-radius:12px;border:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:640px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:600;font-size:11.5px;background:rgba(0,0,0,.25);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.em{word-break:break-all}
+.tag{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;border:1px solid var(--line)}
+.tag.ok{color:var(--ok);border-color:rgba(94,230,168,.5)}.tag.no{color:var(--err);border-color:rgba(255,122,138,.5)}
+.res{margin-top:6px;font-size:11.5px;color:var(--mut);word-break:break-all;max-width:420px}
+.bans{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);border-radius:99px;padding:3px 6px 3px 11px;font-size:12px;font-family:ui-monospace,monospace}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.login{max-width:360px;margin:12vh auto 0}
+.empty{color:var(--mut);font-size:13px;padding:6px 0}
+[hidden]{display:none!important}
+@media(max-width:760px){.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8cff"/><stop offset=".55" stop-color="#9b72ff"/><stop offset="1" stop-color="#ff6b9d"/></linearGradient></defs></svg>
+<div class="wrap">
+
+  <!-- login -->
+  <section id="vLogin" class="login card" hidden>
+    <div class="brand" style="margin-bottom:14px">
+      <svg viewBox="0 0 48 48"><path fill="url(#g)" d="M24 2c1.6 11.5 10.5 20.4 22 22-11.5 1.6-20.4 10.5-22 22C22.4 34.5 13.5 25.6 2 24 13.5 22.4 22.4 13.5 24 2z"/></svg>
+      <h1>Admin <span>Gemini Plus</span></h1>
+    </div>
+    <form id="fLogin">
+      <label for="pw">Password admin</label>
+      <input id="pw" type="password" autocomplete="current-password" required>
+      <button class="btn" style="width:100%;margin-top:14px" id="bLogin">Masuk</button>
+      <div class="msg" id="mLogin" role="status"></div>
+    </form>
+  </section>
+
+  <!-- dashboard -->
+  <section id="vDash" hidden>
+    <header>
+      <div class="brand">
+        <svg viewBox="0 0 48 48"><path fill="url(#g)" d="M24 2c1.6 11.5 10.5 20.4 22 22-11.5 1.6-20.4 10.5-22 22C22.4 34.5 13.5 25.6 2 24 13.5 22.4 22.4 13.5 24 2z"/></svg>
+        <h1>Admin <span>Gemini Plus</span></h1>
+      </div>
+      <div class="row">
+        <a class="btn line" href="/" target="_blank" rel="noopener" style="text-decoration:none">Buka generator</a>
+        <button class="btn line" id="bRefresh">Muat ulang</button>
+        <button class="btn red" id="bLogout">Keluar</button>
+      </div>
+    </header>
+
+    <div id="warns"></div>
+
+    <div class="grid">
+      <div class="stat"><div class="n" id="sSend">0</div><div class="t">OTP terkirim</div></div>
+      <div class="stat"><div class="n" id="sOk">0</div><div class="t">Berhasil klaim</div></div>
+      <div class="stat"><div class="n" id="sFail">0</div><div class="t">Klaim gagal</div></div>
+      <div class="stat"><div class="n" id="sToday">0</div><div class="t">Berhasil hari ini</div></div>
+    </div>
+
+    <div class="two">
+      <div class="card">
+        <h3>Pengaturan</h3>
+        <form id="fSet">
+          <label for="limit">Limit generate per hari (per pengunjung)</label>
+          <input id="limit" type="number" min="1" max="100" required>
+          <label for="ann">Pengumuman (tampil di halaman generator)</label>
+          <input id="ann" type="text" maxlength="200" placeholder="Kosongkan untuk menyembunyikan">
+          <div class="sw"><input id="mt" type="checkbox"><label for="mt" style="margin:0;color:var(--txt)">Mode maintenance (matikan generator)</label></div>
+          <div class="row" style="margin-top:14px"><button class="btn" id="bSave">Simpan</button></div>
+          <div class="msg" id="mSet" role="status"></div>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Kuota API</h3>
+        <div id="quota" class="empty">Belum ada data. Muncul setelah ada OTP yang dikirim.</div>
+        <h3 style="margin-top:18px">Pengguna diblokir</h3>
+        <div id="bans" class="bans"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row" style="justify-content:space-between;margin-bottom:12px">
+        <h3 style="margin:0">Aktivitas terbaru</h3>
+        <button class="btn red" id="bClear">Hapus log</button>
+      </div>
+      <div class="tw">
+        <table>
+          <thead><tr><th>Waktu</th><th>Aksi</th><th>Email</th><th>IP</th><th>Status</th><th></th></tr></thead>
+          <tbody id="logs"></tbody>
+        </table>
+      </div>
+      <div class="empty" id="noLogs" hidden>Belum ada aktivitas.</div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var $ = function(s){ return document.querySelector(s); };
+  var TK = 'gp_admin_token';
+  var token = '';
+  try { token = sessionStorage.getItem(TK) || ''; } catch(e){}
+
+  async function api(body){
+    try {
+      var h = { 'content-type':'application/json' };
+      if (token) h.authorization = 'Bearer ' + token;
+      var r = await fetch('/api/admin', { method:'POST', headers:h, body: JSON.stringify(body) });
+      var j; try { j = await r.json(); } catch(e){ j = { ok:false, message:'Respons server tidak valid.' }; }
+      if (r.status === 401 && j.code === 'AUTH') logout(true);
+      return j;
+    } catch(e){ return { ok:false, message:'Tidak bisa terhubung ke server.' }; }
+  }
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined) e.textContent = text; return e; }
+  function msg(sel, t, type){ var e = $(sel); e.textContent = t || ''; e.className = 'msg' + (type ? ' ' + type : ''); }
+
+  function showLogin(){ $('#vLogin').hidden = false; $('#vDash').hidden = true; $('#pw').focus(); }
+  function logout(expired){
+    token = ''; try { sessionStorage.removeItem(TK); } catch(e){}
+    showLogin(); if (expired) msg('#mLogin', 'Sesi habis, silakan login lagi.', 'err');
+  }
+
+  $('#fLogin').addEventListener('submit', async function(e){
+    e.preventDefault(); $('#bLogin').disabled = true; msg('#mLogin', '');
+    var j = await api({ op:'login', password: $('#pw').value });
+    $('#bLogin').disabled = false;
+    if (!j.ok) return msg('#mLogin', j.message, 'err');
+    token = j.token; try { sessionStorage.setItem(TK, token); } catch(e2){}
+    $('#pw').value = ''; load();
+  });
+  $('#bLogout').addEventListener('click', function(){ logout(false); });
+  $('#bRefresh').addEventListener('click', load);
+
+  function fmtTime(t){
+    var d = new Date(t);
+    return d.toLocaleDateString('id-ID', { day:'2-digit', month:'short' }) + ' ' + d.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+  }
+
+  async function load(){
+    var j = await api({ op:'overview' });
+    if (!j.ok){ if (!token) showLogin(); return; }
+    $('#vLogin').hidden = true; $('#vDash').hidden = false;
+
+    $('#sSend').textContent = j.stats.send; $('#sOk').textContent = j.stats.ok;
+    $('#sFail').textContent = j.stats.fail; $('#sToday').textContent = j.stats.todayOk;
+
+    var w = $('#warns'); w.textContent = '';
+    if (!j.configured) w.appendChild(el('div', 'warn', '⚠️ GEMINI_API_KEY belum diatur di environment — generator tidak bisa berjalan.'));
+    if (j.storage === 'memory') w.appendChild(el('div', 'warn', '⚠️ Penyimpanan masih mode memori (tidak permanen). Di Vercel, limit 1×/hari bisa ter-reset sewaktu-waktu. Hubungkan Upstash Redis lewat UPSTASH_REDIS_REST_URL & UPSTASH_REDIS_REST_TOKEN.'));
+
+    $('#limit').value = j.settings.dailyLimit; $('#ann').value = j.settings.announcement; $('#mt').checked = j.settings.maintenance;
+
+    var q = $('#quota'); q.textContent = ''; q.className = '';
+    if (j.quota){
+      var line = el('div', '', ''); line.style.cssText = 'font-size:26px;font-weight:700';
+      line.textContent = j.quota.remaining + ' / ' + j.quota.total;
+      q.appendChild(line);
+      q.appendChild(el('div', 'empty', 'Terakhir diperbarui ' + fmtTime(j.quota.t)));
+    } else { q.className = 'empty'; q.textContent = 'Belum ada data. Muncul setelah ada OTP yang dikirim.'; }
+
+    var b = $('#bans'); b.textContent = '';
+    if (!j.bans.length) b.appendChild(el('div', 'empty', 'Tidak ada.'));
+    j.bans.forEach(function(h){
+      var c = el('span', 'chip', h); var u = el('button', 'mini', 'buka blokir'); u.type = 'button';
+      u.addEventListener('click', async function(){ await api({ op:'unban', ih:h }); load(); });
+      c.appendChild(u); b.appendChild(c);
+    });
+
+    var tb = $('#logs'); tb.textContent = '';
+    $('#noLogs').hidden = j.logs.length > 0;
+    j.logs.forEach(function(l){
+      var tr = el('tr');
+      tr.appendChild(el('td', '', fmtTime(l.t)));
+      tr.appendChild(el('td', '', l.type === 'send' ? 'Kirim OTP' : 'Klaim'));
+      tr.appendChild(el('td', 'em', l.email || '-'));
+      tr.appendChild(el('td', '', l.ip || '-'));
+      var s = el('td'); s.appendChild(el('span', 'tag ' + (l.ok ? 'ok' : 'no'), l.ok ? 'sukses' : 'gagal'));
+      if (l.msg) s.appendChild(el('div', 'res', l.msg));
+      if (l.result){ var rr = el('div', 'res', l.result); rr.style.color = 'var(--txt)'; s.appendChild(rr); }
+      tr.appendChild(s);
+      var a = el('td'); a.style.whiteSpace = 'nowrap';
+      if (l.ih){
+        var r = el('button', 'mini', 'reset jatah'); r.type = 'button';
+        r.addEventListener('click', async function(){ var x = await api({ op:'resetUser', ih:l.ih }); r.textContent = x.ok ? 'direset ✓' : 'gagal'; });
+        var bn = el('button', 'mini red', 'blokir'); bn.type = 'button';
+        bn.addEventListener('click', async function(){ if (confirm('Blokir pengguna ini?')){ await api({ op:'ban', ih:l.ih }); load(); } });
+        a.appendChild(r); a.appendChild(bn);
+      }
+      tr.appendChild(a); tb.appendChild(tr);
+    });
+  }
+
+  $('#fSet').addEventListener('submit', async function(e){
+    e.preventDefault(); $('#bSave').disabled = true;
+    var j = await api({ op:'saveSettings', dailyLimit: Number($('#limit').value), announcement: $('#ann').value, maintenance: $('#mt').checked });
+    $('#bSave').disabled = false;
+    msg('#mSet', j.ok ? 'Tersimpan ✓' : j.message, j.ok ? 'ok' : 'err');
+  });
+
+  $('#bClear').addEventListener('click', async function(){
+    if (!confirm('Hapus semua log aktivitas?')) return;
+    await api({ op:'clearLogs' }); load();
+  });
+
+  if (token) load(); else showLogin();
+})();
+</script>
+</body>
+</html>
