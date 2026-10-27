@@ -1,0 +1,11 @@
+{
+  "name": "gemini-plus-generator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gemini Plus generator + panel admin (Vercel serverless)",
+  "scripts": {
+    "dev": "node dev.js",
+    "test": "node test.js"
+  },
+  "engines": { "node": ">=18" }
+}
